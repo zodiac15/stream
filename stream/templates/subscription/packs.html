@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Select Your Pack
+{% endblock %}
+
+{% block content %}
+{% if status %}
+<div class="container" style="color:white">
+
+    <h4 style="text-align:center">Your Subscription</h4><br><br>
+    <div class="container" style="text-align:center">
+        <table style="color:white">
+            <tbody>
+            <tr>
+                <td>Subscription id</td>
+                <td>{{ data.sid }}</td>
+            </tr>
+            <tr>
+                <td>Plan</td>
+                <td>{{data.plan}}</td>
+            </tr>
+            <tr>
+                <td>Subscribed on</td>
+                <td>{{data.start}}</td>
+            </tr>
+            <tr>
+                <td>Subscription end</td>
+                <td>{{data.end}}</td>
+            </tr>
+            </tbody>
+        </table><br><br>
+        <div style="text-align:center" class="row">
+            <a class="waves-effect waves-light btn red" href="{% url 'home' %}">Start Watching</a>
+        </div>
+    </div>
+</div>
+<br><br>
+{% else %}
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<stripe-pricing-table pricing-table-id="prctbl_1MQuwDSGBArR9Jt3XwZpZ2Vn"
+                      publishable-key="pk_test_51MQRWzSGBArR9Jt30BETRJU6ccB9ElCZfRcaJuDbVKD5v05ChsiDaOEckcpqVmWI4v32Nk0pto7wPzko5tR1RGjo00hr1s15gJ"
+                      email="{{user.email}}" >
+</stripe-pricing-table>
+<br><br><br><br>
+{% endif %}
+
+{% endblock %}

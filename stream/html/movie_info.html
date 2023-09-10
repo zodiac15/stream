@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Starter Template - Materialize</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+    body{
+        background-image: url("https://image.tmdb.org/t/p/original/r9PkFnRUIthgBp2JZZzD380MWZy.jpg");
+        background-position: center;
+        backdrop-filter: blur(20px);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    </style>
+
+</head>
+<body>
+
+<div class="navbar-fixed">
+    <nav class="black">
+        <div class="nav-wrapper ">
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#"><i class="material-icons">search</i></a></li>
+                <li><a href="#"><i class="material-icons">account_circle</i></a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container" style="color:white">
+    <h3 style="text-align:center;color:white">Movie name</h3>
+    <br><br>
+    <div class="row">
+        <div class="col s1 m1 l5">
+            <img width="300px" height="400px" src="https://image.tmdb.org/t/p/original/lmf0zzR7ritjOL3qumRh3hfvOFK.jpg">
+        </div>
+        <div class="col s1 m1 l7">
+            <h6>Description:</h6>
+            <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
+                vestibulum tristique. Nullam sit amet nulla
+                quis enim dignissim mollis maximus quis felis. Proin pharetra massa vitae orci dignissim ullamcorper.
+                Sed
+                tincidunt, justo sed maximus feugiat, justo metus ultrices diam, sit amet bibendum enim sem pellentesque
+                enim.
+                Etiam nec justo ac velit congue tempor in nec lorem. Donec tempor efficitur metus, quis vulputate elit
+                ultricies
+                eu. Sed luctus neque at feugiat suscipit. Praesent vitae lectus magna. Nulla facilisi. In molestie
+                volutpat
+                sapien sed ultricies.</p>
+            <h6>Genre:</h6>
+            <h6>Release:</h6>
+            <h6>Rating:</h6>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <h5>Trailer:</h5>
+        <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/{{movie.video}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+    </div>
+</div>
+<br><br><br><br>
+</div>
+<div class="divider"></div>
+<footer class="page-footer black ">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Logo</h5>
+                <p class="grey-text text-lighten-4">Description</p>
+
+            </div>
+            <div class="col l2 s12"></div>
+            <div class="col l2 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Name 2023
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/init.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    M.AutoInit();
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

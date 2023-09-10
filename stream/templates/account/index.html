@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+My Account
+{% endblock %}
+
+{% block content %}
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container" style="color:white; text-align:center">
+        <br><br>
+        <i class="large material-icons gray lighten-2" style="font-size: 150px">account_circle</i>
+        <br>
+        <h3>{{user}}</h3>
+        <br><br>
+        <form action="{% url 'logout' %}" method="post">
+            <button class="btn waves-effect waves-light" name="logout" type="submit">Log-Out</button>
+        </form>
+        <br><br>
+        <!--        <div class="container" style="color:white">-->
+        <h4>Watchlist</h4><br>
+        <div class="row">
+            {% for p in results %}
+            <div class="col s4 m3">
+                <div class="card">
+                    <a href="movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}"
+                                 src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'watchlist' %}">
+            <div class="row" style="text-align:center">
+                <button class="waves-effect waves-white btn-flat" style="color:white">More</button>
+                <br>
+                <i class="material-icons" style="color:white">arrow_drop_down</i>
+            </div>
+        </a>
+    </div>
+
+    <br><br>
+
+<!--</div>-->
+</div>
+{% endblock %}

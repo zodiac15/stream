@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+
+ input:focus {
+     color: #ffffff;
+    }
+     input, select, textarea{
+    color: #ffffff;
+}
+
+</style>
+<div class="container" style="color:white;text-align:center">
+    <h4>Search</h4><br><br>
+    <div class="container">
+        <div class="row">
+            <form method="post">
+            <div class="col s10 m10 l10" >
+                {% for field in form.visible_fields %}
+
+                {% if field.errors %}
+                <div class="input-field col s12">
+                    {{ field.label_tag }}
+
+                    {% render_field field class="validate" %}
+                    {% for error in field.errors %}
+                    <p style="font-size: smaller;color: red">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+
+                <div class="input-field col s12">
+                    {{ field.label_tag }}
+
+                    {% render_field field class="validate" %}
+                    {% if field.help_text %}
+                    <span class="helper-text" data-error="{{ error }}"
+                          data-success="right">{{ field.help_text }}</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                <br>
+            </div>
+            <div class="col">
+                <button class="btn waves-effect waves-light orange darken-4" name="submit" type="submit">
+                    <i class="material-icons">search</i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <h5>Results</h5><br><br>
+    <div class="row">
+        {% for p in results %}
+        <div class="col s4 m3">
+            <div class="card">
+                <a href="/movie/{{ p.id }}">
+                    <div class="card-image">
+                        <img width="150px" height="300px" title="{{ p.title }}"
+                             src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

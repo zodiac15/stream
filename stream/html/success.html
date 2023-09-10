@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .card{
+    box-shadow: 2px 2px 14px -1px rgba(112,112,112,1);
+    }
+    .bottom-left {
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+    }
+
+
+
+
+    </style>
+    <script src="https://kit.fontawesome.com/fd07120fae.js" crossorigin="anonymous"></script>
+
+</head>
+<body bgcolor="black">
+
+<div class="navbar-fixed">
+    <nav class="black">
+        <ul id="dropdown1" class="dropdown-content black" style="color:white">
+            <li><a href="{% url 'account_index' %}" style="color:white">My Account</a></li>
+            <li><a href="{% url 'watchlist' %}" style="color:white">Watchlist</a></li>
+            <li class="divider"></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" style="color:white">Logout</a></li>
+            {% endif %}
+        </ul>
+        <div class="nav-wrapper ">
+            <a href="{% url 'home' %}" class="brand-logo ">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'search' %}" title="Search"><i class="material-icons">search</i></a></li>
+                <li><a href="{% url 'sub_packs' %}" title="Manage Subscription"><i class="fa-solid fa-crown"
+                                                                                   style="color:gold"></i></a></li>
+                <li><a class="dropdown-trigger" href="{% url 'account_index' %}" title="My Account"
+                       data-target="dropdown1"><i
+                        class="material-icons">account_circle</i></a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container" style="color:white">
+
+    <h4 style="text-align:center">Subscription Successful</h4><br><br>
+    <div class="container">
+        <table style="color:white">
+            <tbody>
+            <tr>
+                <td>Subscription id</td>
+                <td>#</td>
+            </tr>
+            <tr>
+                <td>Plan</td>
+                <td>#</td>
+            </tr>
+            <tr>
+                <td>Subscribed on</td>
+                <td>#</td>
+            </tr>
+            <tr>
+                <td>Subscription end</td>
+                <td>#</td>
+            </tr>
+            </tbody>
+        </table><br><br>
+        <div style="text-align:center" class="row">
+            <a class="waves-effect waves-light btn red">Start Watching</a>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class="divider"></div>
+<footer class="page-footer black ">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Logo</h5>
+                <p class="grey-text text-lighten-4">Description</p>
+
+            </div>
+            <div class="col l2 s12"></div>
+            <div class="col l2 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Name 2023
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/init.js"></script>
+<script type="text/javascript">
+     $(document).ready(function(){
+    M.AutoInit();
+    $(".dropdown-trigger").dropdown();
+      $('.sidenav').sidenav();
+    $('.carousel').carousel({
+    full_width: true,
+<!--    indicators: true,-->
+    });
+    $('.carousel').carousel();
+  setInterval(function() {
+    $('.carousel').carousel('next');
+  }, 6000); // every 2 seconds
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

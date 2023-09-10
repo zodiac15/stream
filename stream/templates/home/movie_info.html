@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{movie.title}}
+{% endblock %}
+
+{% block content %}
+<style>
+    body{
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://image.tmdb.org/t/p/original{{movie.backdrop_path}}");
+        background-position: center;
+        backdrop-filter: blur(10px);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<div class="container" style="color:white">
+    <h3 style="text-align:center;color:white">{{ movie.title }}</h3>
+    <br><br>
+    <div class="row">
+        <div class="col s12 m12 l5" style="text-align:center">
+            <img width="300px" height="400px" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}">
+        </div>
+        <div class="col s12 m12 l7">
+            <h6><b>Description:</b></h6>
+            <p style="text-align:justify">{{movie.overview}}</p>
+            <h6><b>Genre:</b> {% for g in movie.genres%} {{g.name}}, {% endfor %}</h6>
+            <h6><b>Release:</b> {{movie.release_date}}</h6>
+            <h6><b>Rating:</b> {{movie.vote_average}}/10</h6>
+            <br>
+            <div class="col">
+                {% if user.is_authenticated and watchlisted %}
+                    <button class="waves-effect waves-light red darken-3 btn disabled" name="action"><i
+                            class="material-icons left">add</i>Added to Watchlist
+                    </button>
+                {% else %}
+                <form action="/add-to-watchlist/{{movie.id}}/" method="post">
+                    <button class="waves-effect waves-light red darken-3 btn" type="submit" name="action"><i
+                            class="material-icons left">add</i>Watchlist
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+            <div class="col">
+                <a class="waves-effect waves-light red darken-3 btn" href="/watch/{{movie.id}}/"><i class="material-icons left">play_arrow</i>Watch
+                    Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <h5 style="text-align:left">Trailer:</h5><br><br>
+        <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/{{trailer}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+    </div>
+
+    <br><br>
+    <div class="row" style="color:white">
+        <h5>If you liked this movie, you will also like</h5>
+        <br><br>
+
+        <div class="row">
+            {% for p in similar %}
+            <div class="col s4 m3">
+                <div class="card">
+                    <a href="/movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}"
+                                 src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<br><br><br><br>
+{% endblock %}

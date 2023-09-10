@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="carousel carousel-slider">
+    {% for p in popular %}
+    <a class="carousel-item" href="movie/{{ p.id }}"><img title="{{ p.title }}"  width="100%" src="https://image.tmdb.org/t/p/w1280/{{ p.backdrop_path }}"></a>
+    {% endfor %}
+</div>
+<style>
+.card{
+    box-shadow: 2px 2px 14px -1px rgba(112,112,112,1);
+    }
+</style>
+<div class="section">
+    <div class="container" style="color:white">
+        <h4>Now playing</h4>
+        <div class="row">
+            {% for p in now_playing %}
+            <div class="col s4 m3">
+                <div class="card z-depth-1">
+                    <a href="movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}" src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'now_playing' %}"><div class="row" style="text-align:center">
+       <button class="waves-effect waves-white btn-flat" style="color:white">More</button><br>
+         <i class="material-icons" style="color:white">arrow_drop_down</i>
+        </div></a>
+    </div>
+    <div class="container" style="color:white">
+        <h4>Popular right now</h4>
+        <div class="row">
+            {% for p in popular %}
+            <div class="col s4 m3">
+                <div class="card">
+                    <a href="movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}" src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'popular' %}"><div class="row" style="text-align:center">
+       <button class="waves-effect waves-white btn-flat" style="color:white">More</button><br>
+         <i class="material-icons" style="color:white">arrow_drop_down</i>
+        </div></a>
+    </div>
+    <div class="container" style="color:white">
+        <h4>Top Rated</h4>
+        <div class="row">
+            {% for p in top %}
+            <div class="col s4 m3">
+                <div class="card">
+                    <a href="movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}" src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'top_movies' %}"><div class="row" style="text-align:center">
+       <button class="waves-effect waves-white btn-flat" style="color:white">More</button><br>
+         <i class="material-icons" style="color:white">arrow_drop_down</i>
+        </div></a>
+    </div>
+</div>
+    <br><br><br>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "amount_discount": 0,
+      "amount_subtotal": 10000,
+      "amount_tax": 0,
+      "amount_total": 10000,
+      "currency": "inr",
+      "description": "Premium Plan",
+      "id": "li_1MREzZSGBArR9Jt3A066dOmp",
+      "object": "item",
+      "price": {
+        "active": true,
+        "billing_scheme": "per_unit",
+        "created": 1673883884,
+        "currency": "inr",
+        "custom_unit_amount": null,
+        "id": "price_1MQurYSGBArR9Jt3gmGSvEm5",
+        "livemode": false,
+        "lookup_key": null,
+        "metadata": {},
+        "nickname": null,
+        "object": "price",
+        "product": "prod_NBHQ5Mk43DOe4d",
+        "recurring": {
+          "aggregate_usage": null,
+          "interval": "month",
+          "interval_count": 1,
+          "trial_period_days": null,
+          "usage_type": "licensed"
+        },
+        "tax_behavior": "unspecified",
+        "tiers_mode": null,
+        "transform_quantity": null,
+        "type": "recurring",
+        "unit_amount": 10000,
+        "unit_amount_decimal": "10000"
+      },
+      "quantity": 1
+    }
+  ],
+  "has_more": false,
+  "object": "list",
+  "url": "/v1/checkout/sessions/cs_test_a1WCGJAdHLkNXOBkbABkR68FgEm09WnGCSgBsjVyfJ54RpGWPUPejkL58e/line_items"
+}

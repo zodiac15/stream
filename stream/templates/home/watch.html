@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Watch {{ movie.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container" style="text-align:center;color:white">
+    <h4>{{ movie.title }}</h4>
+    <br>
+    <iframe width="100%" height="700" src="https://www.youtube-nocookie.com/embed/{{trailer}}"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+
+</div>
+<br><br>
+<div class="container" style="text-align:left;color:white">
+    <h6>Description:</h6>
+    <p style="text-align:justify">{{movie.overview}}</p>
+    <h6><b>Genre:</b> {% for g in movie.genres%} {{g.name}}, {% endfor %}</h6>
+    <h6><b>Release:</b> {{movie.release_date}}</h6>
+    <h6><b>Rating:</b> {{movie.vote_average}}/10</h6>
+
+    <div class="row" style="color:white">
+        <h5>If you liked this movie, you will also like</h5>
+        <br><br>
+
+        <div class="row">
+            {% for p in similar %}
+            <div class="col s4 m3">
+                <div class="card">
+                    <a href="/movie/{{ p.id }}">
+                        <div class="card-image">
+                            <img width="150px" height="300px" title="{{ p.title }}"
+                                 src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <br><br>
+
+
+    {% endblock %}
