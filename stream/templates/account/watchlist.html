@@ -8,18 +8,14 @@ Watchlist
 <div class="container" style="color:white">
     <h3 style="text-align:center;color:white">My Watchlist</h3>
     <br><br>
-    <div class="row">
+    <div class="responsive">
             {% for p in results %}
-            <div class="col s4 m3">
-                <div class="card">
-                    <a href="/movie/{{ p.id }}">
-                        <div class="card-image">
-                            <img width="150px" height="300px" title="{{ p.title }}" src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
-                        </div>
-                    </a>
-                </div>
+            <div>
+                <a href="movie/{{ p.id }}">
+                    <img style="box-shadow: 2px 2px 14px -1px rgba(112,112,112,1); " title="{{ p.title }}"
+                         src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                </a>
             </div>
             {% endfor %}
-    </div>
 </div>
 {% endblock %}

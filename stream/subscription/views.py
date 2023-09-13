@@ -7,24 +7,30 @@ import stripe
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 import json
-from configparser import ConfigParser
+import environ
+from django.conf import settings
+import os
 
-conf = ConfigParser()
-conf.read("././Config.ini")
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(settings.BASE_DIR, '.env'))
 
-endpoint_secret = conf["APIKEY"]["stripe_endpoint_secret"]
-stripe.api_key = conf["APIKEY"]["stripe_api_key"]
+endpoint_secret = env('STRIPE_ENDPOINT_SECRET')
+stripe.api_key = env('STRIPE_API_KEY')
 
 
 # Create your views here.
 @login_required
 def packs(request):
+    sub = None
+    status = False
     if SubStatus.objects.filter(uid=request.user).exists():
         status = SubStatus.objects.filter(uid=request.user)
         sub = Subscription.objects.filter(uid=request.user).last()
-    else:
-        status = False
-    return render(request, 'subscription/packs.html', {'user': request.user,'status':status,'data':sub})
+
+    return render(request, 'subscription/packs.html', {'user': request.user, 'status': status, 'data': sub})
 
 
 @csrf_exempt
@@ -70,8 +76,8 @@ def order_success(request, sid):
     et = datetime.fromtimestamp(subscription.plan.created) + timedelta(30)
     s.end = et.strftime("%d %B, %Y")
     s.save()
-    status = SubStatus(uid=request.user,subscribed=True)
+    status = SubStatus(uid=request.user, subscribed=True)
     status.save()
 
     print(customer.id, subscription.plan.created)
-    return render(request, "subscription/success.html", {'data':s})
+    return render(request, "subscription/success.html", {'data': s})

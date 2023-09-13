@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse,redirect
 from django.contrib.auth import login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .forms import CustomUserCreationForm
-from django.shortcuts import redirect
 from .models import Watchlist
 from tmdbv3api import Movie
 from django.conf import settings
@@ -24,7 +23,7 @@ def sign_up(request):
 
         #send welcome email
         msg_plain = render_to_string('account/welcome_email.txt', {'username':  user.username})
-        msg_html = render_to_string('account/welcome_email.html', {'name':  user.username})
+        msg_html = render_to_string('account/welcome_email.html', {'name':  user.username,'home':reverse('home')})
 
         send_mail(
             f'Thanks for signing up, {user.username}!',

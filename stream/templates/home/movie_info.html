@@ -31,9 +31,9 @@
             <br>
             <div class="col">
                 {% if user.is_authenticated and watchlisted %}
-                    <button class="waves-effect waves-light red darken-3 btn disabled" name="action"><i
-                            class="material-icons left">add</i>Added to Watchlist
-                    </button>
+                <button class="waves-effect waves-light red darken-3 btn disabled" name="action"><i
+                        class="material-icons left">add</i>Added to Watchlist
+                </button>
                 {% else %}
                 <form action="/add-to-watchlist/{{movie.id}}/" method="post">
                     <button class="waves-effect waves-light red darken-3 btn" type="submit" name="action"><i
@@ -43,7 +43,8 @@
                 {% endif %}
             </div>
             <div class="col">
-                <a class="waves-effect waves-light red darken-3 btn" href="/watch/{{movie.id}}/"><i class="material-icons left">play_arrow</i>Watch
+                <a class="waves-effect waves-light red darken-3 btn" href="/watch/{{movie.id}}/"><i
+                        class="material-icons left">play_arrow</i>Watch
                     Now</a>
             </div>
         </div>
@@ -61,21 +62,16 @@
         <h5>If you liked this movie, you will also like</h5>
         <br><br>
 
-        <div class="row">
+        <div class="responsive">
             {% for p in similar %}
-            <div class="col s4 m3">
-                <div class="card">
-                    <a href="/movie/{{ p.id }}">
-                        <div class="card-image">
-                            <img width="150px" height="300px" title="{{ p.title }}"
-                                 src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
-                        </div>
-                    </a>
-                </div>
+            <div>
+                <a href="movie/{{ p.id }}">
+                    <img style="box-shadow: 2px 2px 14px -1px rgba(112,112,112,1); " title="{{ p.title }}"
+                         src="https://image.tmdb.org/t/p/w200/{{ p.poster_path }}">
+                </a>
             </div>
             {% endfor %}
         </div>
-
     </div>
 </div>
 <br><br><br><br>

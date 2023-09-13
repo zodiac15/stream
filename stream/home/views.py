@@ -5,14 +5,20 @@ from account.models import Watchlist
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from configparser import ConfigParser
+import environ
+from django.conf import settings
+import os
+from .decorators import subscription_required
 
-conf = ConfigParser()
-conf.read("././Config.ini")
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(settings.BASE_DIR, '.env'))
 
 tmdb = TMDb()
 
-tmdb.api_key = conf["APIKEY"]["tmdb"]
+tmdb.api_key = env('TMDB')
 
 
 def index(request):
@@ -21,7 +27,7 @@ def index(request):
     popular = movie.popular()
     top_rated = movie.top_rated()
     return render(request, 'home/index.html',
-                  {'popular': popular[:8], 'now_playing': now_play[:8], 'top': top_rated[:8]})
+                  {'popular': popular, 'now_playing': now_play, 'top': top_rated})
 
 
 def movie_detail(request, mid):
@@ -41,7 +47,8 @@ def movie_detail(request, mid):
     return render(request, 'home/movie_info.html',
                   {'movie': m, 'watchlisted': watchlisted, 'trailer': tr, 'similar': similar[:4]})
 
-
+@login_required
+@subscription_required
 def watch_movie(request, mid):
     movie = Movie()
     m = movie.details(mid)
@@ -54,7 +61,7 @@ def watch_movie(request, mid):
             tr = i['key']
 
     return render(request, 'home/watch.html',
-                  {'movie': m, 'trailer': tr, 'similar': similar[:4]})
+                  {'movie': m, 'trailer': tr, 'similar': similar})
 
 
 def now_playing(request):
